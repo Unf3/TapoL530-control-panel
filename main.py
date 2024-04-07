@@ -1,28 +1,17 @@
 import dearpygui.dearpygui as dpg
 from PyP100 import PyL530
 from colorsys import rgb_to_hsv
-import bcrypt
-
-
-def hash_password(password):
-    salt = bcrypt.gensalt()
-    hashed_password = bcrypt.hashpw(b'rtxo0hhTT', salt)
-    return hashed_password.decode()
 
 
 def save(sender,app_data): #Login data save
     ip = dpg.get_value("ip")
     email = dpg.get_value("email")
     password = dpg.get_value("password")
-    h_pass = hash_password(password)
     with open('config.txt', 'w+') as c:
         if ip and email and password is not None:
-            c.write(f'{ip} {email} {h_pass}')
+            c.write(f'{ip} {email} {password}')
             c.seek(0)
             data = c.read().split(' ')
-            if bcrypt.checkpw(password, h_pass):
-                password = dpg.get_value("password")
-                print('HASHED REALLY')
             global l530
             l530 = PyL530.L530(str(data[0]), str(data[1]), str(data[2]))
         else:
