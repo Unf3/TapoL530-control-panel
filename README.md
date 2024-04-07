@@ -4,8 +4,8 @@ This is a small Tapo L530 bulb control panel with GUI.
 ## Features :
 
  - Saving/Loading your tapo login data
- - color picker 
- - brightness slider
+ - Color picker 
+ - Brightness slider
  - On/Off switch.
 
 ## Requirements
